@@ -22,8 +22,8 @@ class MyApp extends StatelessWidget {
         StateNotifierProvider<PageNotifier, PageState>(
           create: (_) => PageNotifier(),
         ),
-        StateNotifierProvider<ScannedNotifier, ScannedState>(
-          create: (_) => ScannedNotifier(),
+        StateNotifierProvider<HistoryNotifier, HistoryState>(
+          create: (_) => HistoryNotifier(),
         ),
       ],
       child: MaterialApp(

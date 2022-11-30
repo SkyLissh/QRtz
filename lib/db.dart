@@ -14,108 +14,118 @@ class HiveDB {
 
     // Register adapters
     Hive.registerAdapter(QRTypeAdapter());
-    Hive.registerAdapter(QRScannedAdapter());
+    Hive.registerAdapter(QRCodeAdapter());
 
     // Open boxes
-    await Hive.openBox<QRScanned>("scanned");
+    await Hive.openBox<QRCode>("history");
 
     // Seed Database
     await _seed();
   }
 
   static Future<void> _seed() async {
-    final scanned = Hive.box<QRScanned>("scanned");
+    final scanned = Hive.box<QRCode>("history");
 
     if (scanned.isNotEmpty) return;
 
     scanned.put(
         _uuids[9],
-        QRScanned(
+        QRCode(
           id: _uuids[9],
           data: "https://lock.skylissh.live/",
           type: QRType.url,
           date: _today,
+          isScanned: true,
         ));
 
     scanned.put(
         _uuids[0],
-        QRScanned(
+        QRCode(
           id: _uuids[0],
           data: "https://www.linkedin.com/in/alisson-hernandez/",
           type: QRType.linkedin,
           date: _today,
+          isScanned: true,
         ));
 
     scanned.put(
         _uuids[1],
-        QRScanned(
+        QRCode(
           id: _uuids[1],
           data: "https://github.com/skylissh",
           type: QRType.github,
           date: _today,
+          isScanned: true,
         ));
 
     scanned.put(
         _uuids[2],
-        QRScanned(
+        QRCode(
           id: _uuids[2],
           data: "https://instagram.com/skylissh",
           type: QRType.instagram,
           date: _today.subtract(const Duration(days: 1)),
+          isScanned: true,
         ));
 
     scanned.put(
         _uuids[3],
-        QRScanned(
+        QRCode(
           id: _uuids[3],
           data: "https://twitch.tv/skylissh",
           type: QRType.twitch,
           date: _today.subtract(const Duration(days: 1)),
+          isScanned: true,
         ));
 
     scanned.put(
         _uuids[4],
-        QRScanned(
+        QRCode(
           id: _uuids[4],
           data: "https://twitter.com/skylissh",
           type: QRType.twitter,
           date: _today.subtract(const Duration(days: 4)),
+          isScanned: true,
         ));
 
     scanned.put(
         _uuids[5],
-        QRScanned(
+        QRCode(
           id: _uuids[5],
           data: "https://youtube.com/skylissh",
           type: QRType.youtube,
           date: _today.subtract(const Duration(days: 4)),
+          isScanned: true,
         ));
 
     scanned.put(
         _uuids[6],
-        QRScanned(
+        QRCode(
           id: _uuids[6],
           data: "geo:37.4429964,-122.1545229?q=Google+Plex",
           type: QRType.geo,
           date: _today.subtract(const Duration(days: 15)),
+          isScanned: true,
         ));
 
     scanned.put(
         _uuids[7],
-        QRScanned(
+        QRCode(
           id: _uuids[7],
           data: "Hi, my name is Alisson Lopez and I'm a Flutter Developer",
           type: QRType.text,
           date: DateTime(2003, 7, 13),
+          isScanned: true,
         ));
 
     scanned.put(
         _uuids[8],
-        QRScanned(
+        QRCode(
           id: _uuids[8],
           data: "mailto:skylissh@gmail.com",
           type: QRType.email,
           date: _today.subtract(const Duration(days: 15)),
+          isScanned: true,
         ));
   }
 }

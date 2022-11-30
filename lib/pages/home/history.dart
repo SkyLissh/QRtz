@@ -38,8 +38,8 @@ class _Scanned extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final scannedList = context.select((ScannedState h) => h.scanned);
-    final scanned = context.read<ScannedNotifier>();
+    final scannedList = context.select((HistoryState h) => h.scanned);
+    final scanned = context.read<HistoryNotifier>();
 
     return scannedList.isEmpty
         ? const EmptyHistory(

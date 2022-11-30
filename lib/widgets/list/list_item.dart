@@ -7,7 +7,7 @@ import "package:qr_scanner/constants/constants.dart";
 import "package:qr_scanner/widgets/widgets.dart";
 
 class ListItem extends StatelessWidget {
-  final QRScanned item;
+  final QRCode item;
   final Function(String)? onDismissed;
 
   const ListItem({

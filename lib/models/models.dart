@@ -1,2 +1,2 @@
 export "qrtype.dart";
-export "qrscanned.dart";
+export "qrcode.dart";

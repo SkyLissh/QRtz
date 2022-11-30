@@ -21,7 +21,7 @@ class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
   void confirmClear(BuildContext context, int page) async {
-    final scanned = context.read<ScannedNotifier>();
+    final scanned = context.read<HistoryNotifier>();
 
     final confirm = await showDialog<bool>(
       context: context,
@@ -38,7 +38,7 @@ class HomePage extends StatelessWidget {
     }
   }
 
-  void saveQR(ScannedNotifier scanned) async {
+  void saveQR(HistoryNotifier scanned) async {
     final result = await FlutterBarcodeScanner.scanBarcode(
       kPrimaryColor.toHex(),
       "Cancel",
@@ -54,7 +54,7 @@ class HomePage extends StatelessWidget {
     final page = context.select((PageState p) => p.page);
     final setPage = context.read<PageNotifier>().setPage;
 
-    final scanned = context.read<ScannedNotifier>();
+    final scanned = context.read<HistoryNotifier>();
 
     return Scaffold(
       appBar: AppBar(

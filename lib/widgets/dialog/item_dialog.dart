@@ -1,5 +1,4 @@
 import "package:flutter/material.dart";
-import "package:validators/validators.dart";
 
 import "package:qr_scanner/models/models.dart";
 import "package:qr_scanner/widgets/widgets.dart";
@@ -19,6 +18,7 @@ class _ItemDialogState extends State<ItemDialog> {
   void _onSubmit() {
     if (_formKey.currentState!.validate()) {
       Navigator.pop(context, true);
+      _formKey.currentState!.save();
     }
   }
 

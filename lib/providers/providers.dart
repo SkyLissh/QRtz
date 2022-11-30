@@ -1,2 +1,2 @@
 export "page.dart";
-export "scanned.dart";
+export "history.dart";

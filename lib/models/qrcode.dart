@@ -3,12 +3,12 @@ import "package:uuid/uuid.dart";
 
 import "package:qr_scanner/models/models.dart";
 
-part "qrscanned.g.dart";
+part "qrcode.g.dart";
 
 const _uuid = Uuid();
 
 @HiveType(typeId: 0)
-class QRScanned {
+class QRCode {
   @HiveField(0)
   String id;
 
@@ -21,18 +21,25 @@ class QRScanned {
   @HiveField(3)
   DateTime date;
 
-  QRScanned(
-      {required this.id,
-      required this.data,
-      required this.type,
-      required this.date});
+  @HiveField(4)
+  bool isScanned;
 
-  factory QRScanned.fromData(String data) {
-    return QRScanned(
-        id: _uuid.v4(),
-        data: data.replaceFirst("www.", ""),
-        type: _typeFromData(data),
-        date: DateTime.now());
+  QRCode({
+    required this.id,
+    required this.data,
+    required this.type,
+    required this.date,
+    required this.isScanned,
+  });
+
+  factory QRCode.fromData(String data, {bool isScanned = false}) {
+    return QRCode(
+      id: _uuid.v4(),
+      data: data.replaceFirst("www.", ""),
+      type: _typeFromData(data),
+      date: DateTime.now(),
+      isScanned: isScanned,
+    );
   }
 
   static QRType _typeFromData(String data) {

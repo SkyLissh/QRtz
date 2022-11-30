@@ -1,6 +1,8 @@
 import "package:flutter/material.dart";
 import "package:validators/validators.dart";
 
+import 'package:qr_scanner/models/qrcode.dart';
+
 class UrlForm extends StatelessWidget {
   const UrlForm({Key? key}) : super(key: key);
 
@@ -14,9 +16,15 @@ class UrlForm extends StatelessWidget {
     }
   }
 
+  void _onSaved(BuildContext context, String? value) {
+    final generated = QRCode.fromData(value!);
+    Navigator.pushNamed(context, "generated", arguments: generated);
+  }
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onSaved: (value) => _onSaved(context, value),
       keyboardType: TextInputType.url,
       validator: _urlValidator,
       decoration: const InputDecoration(

@@ -1,33 +1,34 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'qrscanned.dart';
+part of 'qrcode.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class QRScannedAdapter extends TypeAdapter<QRScanned> {
+class QRCodeAdapter extends TypeAdapter<QRCode> {
   @override
   final int typeId = 0;
 
   @override
-  QRScanned read(BinaryReader reader) {
+  QRCode read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return QRScanned(
+    return QRCode(
       id: fields[0] as String,
       data: fields[1] as String,
       type: fields[2] as QRType,
       date: fields[3] as DateTime,
+      isScanned: fields[4] as bool,
     );
   }
 
   @override
-  void write(BinaryWriter writer, QRScanned obj) {
+  void write(BinaryWriter writer, QRCode obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -35,7 +36,9 @@ class QRScannedAdapter extends TypeAdapter<QRScanned> {
       ..writeByte(2)
       ..write(obj.type)
       ..writeByte(3)
-      ..write(obj.date);
+      ..write(obj.date)
+      ..writeByte(4)
+      ..write(obj.isScanned);
   }
 
   @override
@@ -44,7 +47,7 @@ class QRScannedAdapter extends TypeAdapter<QRScanned> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is QRScannedAdapter &&
+      other is QRCodeAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

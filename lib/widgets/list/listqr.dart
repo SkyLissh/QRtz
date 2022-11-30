@@ -6,7 +6,7 @@ import "separator.dart";
 import "list_item.dart";
 
 class ListQR extends StatelessWidget {
-  final List<QRScanned> items;
+  final List<QRCode> items;
   final Function(String)? onDismissed;
 
   const ListQR({Key? key, required this.items, this.onDismissed})
