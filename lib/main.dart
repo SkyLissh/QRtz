@@ -19,12 +19,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        StateNotifierProvider<PageNotifier, PageState>(
-          create: (_) => PageNotifier(),
-        ),
+        StateNotifierProvider<NavNotifier, NavState>(
+            create: (_) => NavNotifier()),
         StateNotifierProvider<HistoryNotifier, HistoryState>(
-          create: (_) => HistoryNotifier(),
-        ),
+            create: (_) => HistoryNotifier()),
       ],
       child: MaterialApp(
           debugShowCheckedModeBanner: false,

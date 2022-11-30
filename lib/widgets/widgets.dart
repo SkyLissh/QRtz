@@ -1,4 +1,5 @@
 export "bottom_bar.dart";
+export "clear_button.dart";
 export "dialog/dialog.dart";
 export "dismiss_background.dart";
 export "empty_history.dart";

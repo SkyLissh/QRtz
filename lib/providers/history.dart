@@ -40,9 +40,15 @@ class HistoryNotifier extends StateNotifier<HistoryState> with LocatorMixin {
     );
   }
 
-  void clear() {
-    _historyBox.clear();
+  void clearScanned() {
+    _historyBox.deleteAll(state.scanned.map((e) => e.id));
 
-    state = HistoryState([], []);
+    state = HistoryState([], state.generated);
+  }
+
+  void clearGenerated() {
+    _historyBox.deleteAll(state.generated.map((e) => e.id));
+
+    state = HistoryState(state.scanned, []);
   }
 }

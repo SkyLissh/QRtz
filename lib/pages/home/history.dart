@@ -10,16 +10,19 @@ class HistoryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final nav = context.read<NavNotifier>();
+
     return DefaultTabController(
       length: 2,
-      child: Column(children: const [
+      child: Column(children: [
         TabBar(
-          tabs: [
+          onTap: nav.setTab,
+          tabs: const [
             Tab(text: "Scanned"),
             Tab(text: "Generated"),
           ],
         ),
-        Flexible(
+        const Flexible(
           child: TabBarView(children: [
             _Scanned(),
             _Generated(),
