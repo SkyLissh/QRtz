@@ -1,58 +1,26 @@
 import "package:flutter/material.dart";
+import "package:provider/provider.dart";
 
-import "package:mask_text_input_formatter/mask_text_input_formatter.dart";
-import "package:validators/validators.dart";
+import "package:qr_scanner/models/qrcode.dart";
+import "package:qr_scanner/providers/providers.dart";
 
-import "country_dropdown.dart";
+import "phone_field.dart";
 
-class PhoneForm extends StatefulWidget {
+class PhoneForm extends StatelessWidget {
   const PhoneForm({Key? key}) : super(key: key);
 
-  @override
-  State<PhoneForm> createState() => _PhoneFormState();
-}
+  void _onSaved(BuildContext context, String? value) {
+    final history = context.read<HistoryNotifier>();
 
-class _PhoneFormState extends State<PhoneForm> {
-  String _code = "1";
-
-  final _mask = MaskTextInputFormatter(
-      mask: "(###) ###-####",
-      filter: {"#": RegExp(r"[0-9]")},
-      type: MaskAutoCompletionType.lazy);
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  String? _validator(String? value) {
-    final number = _mask.getUnmaskedText();
-
-    if (number.isEmpty) {
-      return "Phone number is required";
-    }
-
-    if (!isNumeric(number) || number.length < 10) {
-      return "Phone number is invalid";
-    }
-
-    return null;
+    final generated = QRCode.fromData("tel:$value");
+    history.add("tel:$value");
+    Navigator.pushNamed(context, "generated", arguments: generated);
   }
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      keyboardType: TextInputType.phone,
-      inputFormatters: [_mask],
-      validator: _validator,
-      decoration: InputDecoration(
-        hintText: "(555) 555-5555",
-        prefixIcon: CountryDropdown(
-          onSelect: (country) => setState(() {
-            _code = country.phoneCode;
-          }),
-        ),
-      ),
+    return PhoneField(
+      onSaved: (value) => _onSaved(context, value),
     );
   }
 }

@@ -22,10 +22,7 @@ class HistoryPage extends StatelessWidget {
         Flexible(
           child: TabBarView(children: [
             _Scanned(),
-            EmptyHistory(
-                icon: FeatherIcons.grid,
-                title: "No Generated QR",
-                subtitle: "Generate a QR code to see the result here"),
+            _Generated(),
           ]),
         ),
       ]),
@@ -38,14 +35,31 @@ class _Scanned extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final scannedList = context.select((HistoryState h) => h.scanned);
-    final scanned = context.read<HistoryNotifier>();
+    final scanned = context.select((HistoryState h) => h.scanned);
+    final history = context.read<HistoryNotifier>();
 
-    return scannedList.isEmpty
+    return scanned.isEmpty
         ? const EmptyHistory(
             icon: FeatherIcons.maximize,
             title: "No Scanned QR",
             subtitle: "Scan a QR code to see the result here")
-        : ListQR(items: scannedList, onDismissed: (id) => scanned.remove(id));
+        : ListQR(items: scanned, onDismissed: (id) => history.remove(id));
+  }
+}
+
+class _Generated extends StatelessWidget {
+  const _Generated({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final generated = context.select((HistoryState h) => h.generated);
+    final history = context.read<HistoryNotifier>();
+
+    return generated.isEmpty
+        ? const EmptyHistory(
+            icon: FeatherIcons.grid,
+            title: "No Generated QR",
+            subtitle: "Generate a QR code to see the result here")
+        : ListQR(items: generated, onDismissed: (id) => history.remove(id));
   }
 }

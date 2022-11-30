@@ -26,16 +26,17 @@ class GeneratedPage extends StatelessWidget {
       ),
       body: Container(
         padding: const EdgeInsets.all(32),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+        child: ListView(
           children: [
-            Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(30),
+            Center(
+              child: Container(
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                child: QrImage(data: qr.data, size: 200),
               ),
-              child: QrImage(data: qr.data, size: 200),
             ),
             const SizedBox(height: 86),
             Stack(

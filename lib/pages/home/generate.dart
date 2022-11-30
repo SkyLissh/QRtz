@@ -7,15 +7,6 @@ import "package:qr_scanner/widgets/widgets.dart";
 class GeneratePage extends StatelessWidget {
   const GeneratePage({Key? key}) : super(key: key);
 
-  Future<void> _showDialog(BuildContext context, QRType type) async {
-    final confirm = await showDialog<bool>(
-      context: context,
-      builder: (context) => ItemDialog(type: type),
-    );
-
-    print(confirm);
-  }
-
   @override
   Widget build(BuildContext context) {
     final typesQR = QRType.values
@@ -39,18 +30,20 @@ class GeneratePage extends StatelessWidget {
             child: InkWell(
               borderRadius: BorderRadius.circular(8),
               splashColor: kSecondaryColor.withOpacity(0.2),
-              onTap: () => _showDialog(context, type),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  QRIcon(type: type, size: 64),
-                  const SizedBox(height: 16),
-                  Text(
-                    stringQRType[type]!,
-                    style: kSubtitleStyle,
-                  ),
-                ],
+              onTap: () => showDialog(
+                context: context,
+                builder: (context) => ItemDialog(type: type),
               ),
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    QRIcon(type: type, size: 64),
+                    const SizedBox(height: 16),
+                    Text(
+                      stringQRType[type]!,
+                      style: kSubtitleStyle,
+                    ),
+                  ]),
             ),
           ),
         );

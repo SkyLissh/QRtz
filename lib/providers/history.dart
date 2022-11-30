@@ -19,7 +19,7 @@ class HistoryNotifier extends StateNotifier<HistoryState> with LocatorMixin {
 
   HistoryNotifier() : super(HistoryState(_scanned, _generated));
 
-  void add(String data, {bool isScanned = true}) {
+  void add(String data, {bool isScanned = false}) {
     final qr = QRCode.fromData(data, isScanned: isScanned);
 
     _historyBox.put(qr.id, qr);

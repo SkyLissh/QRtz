@@ -14,11 +14,6 @@ class CountryDropdown extends StatefulWidget {
 class _CountryDropdownState extends State<CountryDropdown> {
   Country? _selected;
 
-  @override
-  void initState() {
-    super.initState();
-  }
-
   void _onSelect(Country country) {
     setState(() {
       _selected = country;
