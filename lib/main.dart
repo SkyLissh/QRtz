@@ -36,6 +36,7 @@ class MyApp extends StatelessWidget {
           routes: {
             "home": (_) => const HomePage(),
             "map": (_) => const MapPage(),
+            "generated": (_) => const GeneratedPage(),
           }),
     );
   }
