@@ -4,15 +4,25 @@ import "package:flutter_svg/flutter_svg.dart";
 import "package:qr_scanner/constants/constants.dart";
 
 class FloatingButton extends StatelessWidget {
+  final Widget icon;
+  final Widget? label;
   final VoidCallback? onTap;
 
-  const FloatingButton({Key? key, this.onTap}) : super(key: key);
+  const FloatingButton({
+    Key? key,
+    required this.icon,
+    this.label,
+    this.onTap,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 60,
-      width: 60,
+      constraints: const BoxConstraints(
+        minWidth: 56,
+        minHeight: 56,
+      ),
+      // width: 60,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         gradient: kBackgroundGradient,
@@ -33,10 +43,23 @@ class FloatingButton extends StatelessWidget {
           onTap: onTap,
           child: Padding(
             padding: const EdgeInsets.all(16),
-            child: SvgPicture.asset(
-              "assets/images/logo.svg",
-              color: Colors.white,
-            ),
+            child: label == null
+                ? icon
+                : Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      icon,
+                      const SizedBox(width: 12),
+                      DefaultTextStyle(
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
+                          ),
+                          child: label!)
+                    ],
+                  ),
           ),
         ),
       ),

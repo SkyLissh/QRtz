@@ -1,5 +1,4 @@
 import "package:flutter/material.dart";
-import "package:feather_icons_svg/feather_icons_svg.dart";
 import "package:qr_flutter/qr_flutter.dart";
 
 import "package:qr_scanner/models/models.dart";
@@ -15,14 +14,7 @@ class GeneratedPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Generated"),
-        leading: IconButton(
-          splashRadius: 24,
-          onPressed: () => Navigator.pop(context),
-          icon: const FeatherIcon(
-            FeatherIcons.chevronLeft,
-            size: 32,
-          ),
-        ),
+        leading: const ReturnButton(),
       ),
       body: Container(
         padding: const EdgeInsets.all(32),

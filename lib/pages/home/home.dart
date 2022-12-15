@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import 'package:flutter_svg/flutter_svg.dart';
 import "package:provider/provider.dart";
 import "package:flutter_barcode_scanner/flutter_barcode_scanner.dart";
 
@@ -48,7 +49,14 @@ class HomePage extends StatelessWidget {
         currentIndex: page,
         onTap: (idx) => nav.setPage(idx),
       ),
-      floatingActionButton: FloatingButton(onTap: () => saveQR(history)),
+      floatingActionButton: FloatingButton(
+          icon: SvgPicture.asset(
+            "assets/images/logo.svg",
+            color: Colors.white,
+            height: 28,
+            width: 28,
+          ),
+          onTap: () => saveQR(history)),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }

@@ -24,11 +24,12 @@ class HiveDB {
   }
 
   static Future<void> _seed() async {
-    final scanned = Hive.box<QRCode>("history");
+    final history = Hive.box<QRCode>("history");
+    final scanned = history.values.where((e) => e.isScanned).toList();
 
     if (scanned.isNotEmpty) return;
 
-    scanned.put(
+    history.put(
         _uuids[9],
         QRCode(
           id: _uuids[9],
@@ -38,7 +39,7 @@ class HiveDB {
           isScanned: true,
         ));
 
-    scanned.put(
+    history.put(
         _uuids[0],
         QRCode(
           id: _uuids[0],
@@ -48,7 +49,7 @@ class HiveDB {
           isScanned: true,
         ));
 
-    scanned.put(
+    history.put(
         _uuids[1],
         QRCode(
           id: _uuids[1],
@@ -58,7 +59,7 @@ class HiveDB {
           isScanned: true,
         ));
 
-    scanned.put(
+    history.put(
         _uuids[2],
         QRCode(
           id: _uuids[2],
@@ -68,7 +69,7 @@ class HiveDB {
           isScanned: true,
         ));
 
-    scanned.put(
+    history.put(
         _uuids[3],
         QRCode(
           id: _uuids[3],
@@ -78,7 +79,7 @@ class HiveDB {
           isScanned: true,
         ));
 
-    scanned.put(
+    history.put(
         _uuids[4],
         QRCode(
           id: _uuids[4],
@@ -88,7 +89,7 @@ class HiveDB {
           isScanned: true,
         ));
 
-    scanned.put(
+    history.put(
         _uuids[5],
         QRCode(
           id: _uuids[5],
@@ -98,7 +99,7 @@ class HiveDB {
           isScanned: true,
         ));
 
-    scanned.put(
+    history.put(
         _uuids[6],
         QRCode(
           id: _uuids[6],
@@ -108,7 +109,7 @@ class HiveDB {
           isScanned: true,
         ));
 
-    scanned.put(
+    history.put(
         _uuids[7],
         QRCode(
           id: _uuids[7],
@@ -118,7 +119,7 @@ class HiveDB {
           isScanned: true,
         ));
 
-    scanned.put(
+    history.put(
         _uuids[8],
         QRCode(
           id: _uuids[8],
